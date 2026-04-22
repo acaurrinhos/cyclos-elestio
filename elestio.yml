@@ -1,7 +1,7 @@
 config:
   runTime: "dockerCompose"
   version: ""
-  framework: ""
+  framework: "dockerCompose"
   installCommand: ""
   buildCommand: "docker-compose build"
   buildDir: "/"
