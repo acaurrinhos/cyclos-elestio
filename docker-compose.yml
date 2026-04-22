@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  # 1. Cyclos Database
+  db:
+    image: postgis/postgis
+    container_name: cyclos-db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - cyclos-net
+    restart: always
+
+  # 2. Cyclos Application
+  cyclos:
+    image: cyclos/cyclos:latest # Replace with specific version
+    container_name: cyclos_app
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASS}
+    ports:
+      - "80:8080"
+    networks:
+      - cyclos-net
+    restart: always
+  
+volumes:
+  pgdata:
+
+networks:
+  cyclos-net:
