@@ -1,12 +1,12 @@
 config:
   runTime: "dockerCompose"
   version: ""
-  framework: "dockerCompose"
+  framework: ""
   installCommand: ""
   buildCommand: "docker-compose build"
   buildDir: "/"
   runCommand: "docker-compose up -d"
-  isMonoRepoPackageInRoot: true/false 
+  isMonoRepoPackageInRoot: false 
 environments:
   - key: "DB_USER"
     value: "cyclos"
